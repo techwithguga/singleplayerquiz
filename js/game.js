@@ -1,3 +1,5 @@
+"use strict";
+
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
 const progressText = document.getElementById("progressText");
@@ -19,7 +21,7 @@ fetch(
   .then(res => {
     return res.json();
   })
-//transform the questions response data from public API to the format we use
+  //transform the questions response data from public API to the format we use
   .then(loadedQuestions => {
     console.log(loadedQuestions.results);
     questions = loadedQuestions.results.map(loadedQuestion => {
@@ -52,7 +54,7 @@ fetch(
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 5;
 
-startGame = () => {
+const startGame = () => {
   questionCounter = 0;
   score = 0;
   availableQuesions = [...questions];
@@ -61,11 +63,11 @@ startGame = () => {
   loader.classList.add("hidden");
 };
 
-getNewQuestion = () => {
+const getNewQuestion = () => {
   if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
     localStorage.setItem("mostRecentScore", score);
     //go to the end page
-    return window.location.assign("/end.html");
+    return window.location.assign("end.html");
   }
   questionCounter++;
   progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
@@ -109,7 +111,7 @@ choices.forEach(choice => {
   });
 });
 
-incrementScore = num => {
+const incrementScore = num => {
   score += num;
   scoreText.innerText = score;
 };
