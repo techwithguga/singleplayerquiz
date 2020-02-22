@@ -4,7 +4,7 @@ const finalScore = document.getElementById("finalScore");
 const mostRecentScore = localStorage.getItem("mostRecentScore");
 
 const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-
+//only 5 highscores will be shown
 const MAX_HIGH_SCORES = 5;
 
 finalScore.innerText = mostRecentScore;
@@ -22,6 +22,7 @@ saveHighScore = e => {
     score: mostRecentScore,
     name: username.value //once user is authenticated we use their names
   };
+  //logic to sort scores from highest to lowest and everything more than 5 results cut
   highScores.push(score);
   highScores.sort((a, b) => b.score - a.score);
   highScores.splice(5);
