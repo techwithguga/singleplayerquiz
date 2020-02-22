@@ -19,6 +19,7 @@ fetch(
   .then(res => {
     return res.json();
   })
+//transform the questions response data from public API to the format we use
   .then(loadedQuestions => {
     console.log(loadedQuestions.results);
     questions = loadedQuestions.results.map(loadedQuestion => {
